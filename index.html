@@ -13,33 +13,39 @@
     }
 
     header {
-      display: flex;
-      align-items: center;
       background-color: #1c1a22;
       padding: 16px 24px;
+      text-align: center;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.3);
       position: sticky;
       top: 0;
       z-index: 999;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.3);
-    }
-
-    .menu-toggle {
-      background: none;
-      border: none;
-      color: #f87171;
-      font-size: 1.8rem;
-      cursor: pointer;
-      margin-right: 16px;
-      transition: color 0.2s;
-    }
-
-    .menu-toggle:hover {
-      color: #ef4444;
     }
 
     .header-title {
       font-size: 1.6rem;
       font-weight: bold;
+    }
+
+    .menu-tab {
+      position: fixed;
+      top: 50%;
+      left: 0;
+      transform: translateY(-50%);
+      background-color: #ef4444;
+      color: white;
+      border: none;
+      border-top-right-radius: 8px;
+      border-bottom-right-radius: 8px;
+      padding: 12px 16px;
+      font-size: 1.4rem;
+      cursor: pointer;
+      z-index: 1002;
+      transition: background 0.3s;
+    }
+
+    .menu-tab:hover {
+      background-color: #dc2626;
     }
 
     .side-panel {
@@ -52,7 +58,7 @@
       color: #f87171;
       padding: 20px;
       transition: left 0.3s ease;
-      z-index: 1000;
+      z-index: 1001;
       overflow-y: auto;
     }
 
@@ -151,10 +157,7 @@
 </head>
 <body>
 
-  <header>
-    <button class="menu-toggle" onclick="togglePanel()">☰</button>
-    <div class="header-title">Spare Stack</div>
-  </header>
+  <button class="menu-tab" id="menuButton" onclick="togglePanel()">☰</button>
 
   <div class="side-panel" id="sidePanel">
     <h2>Navigation</h2>
@@ -163,6 +166,10 @@
     </ul>
     <div class="panel-content" id="panelContent"></div>
   </div>
+
+  <header>
+    <div class="header-title">Spare Stack</div>
+  </header>
 
   <div class="container">
     <h1>Spare Stack Dashboard</h1>
@@ -239,7 +246,9 @@
 
     function togglePanel() {
       const panel = document.getElementById("sidePanel");
+      const btn = document.getElementById("menuButton");
       panel.classList.toggle("open");
+      btn.textContent = panel.classList.contains("open") ? '❌' : '☰';
     }
 
     function showUnderConstruction() {
