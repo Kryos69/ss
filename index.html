@@ -21,11 +21,10 @@
       height: 100vh;
       padding: 20px;
       box-sizing: border-box;
-      transition: width 0.3s;
     }
 
     .sidebar h2 {
-      color: #b794f4;
+      color: #f87171;
       margin: 0 0 20px 0;
     }
 
@@ -49,28 +48,16 @@
     }
 
     .sidebar ul li a:hover {
-      background-color: #b794f420;
-    }
-
-    /* Hamburger */
-    .hamburger {
-      position: absolute;
-      top: 15px;
-      left: 15px;
-      font-size: 26px;
-      color: #fff;
-      cursor: pointer;
-      z-index: 1000;
+      background-color: #f8717120;
     }
 
     /* Main content */
     .main {
       flex: 1;
       padding: 40px;
-      transition: margin-left 0.3s;
     }
 
-    /* Box styling */
+    /* Card grid */
     .card-grid {
       display: flex;
       flex-wrap: wrap;
@@ -79,7 +66,7 @@
 
     .card {
       background-color: #1f1f25;
-      border: 1px solid #b794f430;
+      border: 1px solid #f8717140;
       padding: 20px;
       border-radius: 10px;
       width: 250px;
@@ -89,11 +76,11 @@
 
     .card:hover {
       transform: translateY(-5px);
-      box-shadow: 0 0 10px #b794f450;
+      box-shadow: 0 0 10px #f8717140;
     }
 
     .card-title {
-      color: #b794f4;
+      color: #f87171;
       font-size: 18px;
       margin-bottom: 8px;
     }
@@ -105,20 +92,11 @@
 
     @media (max-width: 768px) {
       .sidebar {
-        position: absolute;
-        left: -240px;
-        top: 0;
-        bottom: 0;
-        height: 100%;
-        z-index: 999;
-      }
-
-      .sidebar.active {
-        left: 0;
+        display: none; /* Hide sidebar on small screens (no hamburger now) */
       }
 
       .main {
-        margin-left: 0;
+        padding: 20px;
       }
 
       .card-grid {
@@ -129,9 +107,7 @@
 </head>
 <body>
 
-  <div class="hamburger" onclick="toggleSidebar()">☰</div>
-
-  <div class="sidebar" id="sidebar">
+  <div class="sidebar">
     <h2>Spare Stack</h2>
     <ul>
       <li><a href="#">Dashboard</a></li>
@@ -162,12 +138,6 @@
       </div>
     </div>
   </div>
-
-  <script>
-    function toggleSidebar() {
-      document.getElementById('sidebar').classList.toggle('active');
-    }
-  </script>
 
 </body>
 </html>
