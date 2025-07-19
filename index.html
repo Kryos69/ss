@@ -10,41 +10,50 @@
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       background-color: #0e0d13;
       color: #f87171;
-      padding: 40px;
     }
 
-    h1 {
-      text-align: center;
-      font-size: 2.5rem;
-      margin-bottom: 40px;
-      color: #f87171;
+    header {
+      display: flex;
+      align-items: center;
+      background-color: #1c1a22;
+      padding: 16px 24px;
+      position: sticky;
+      top: 0;
+      z-index: 999;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.3);
     }
 
     .menu-toggle {
-      position: fixed;
-      top: 20px;
-      left: 20px;
-      background-color: #1f1b24;
-      color: #f87171;
+      background: none;
       border: none;
-      padding: 10px 14px;
-      font-size: 1.2rem;
-      border-radius: 4px;
+      color: #f87171;
+      font-size: 1.8rem;
       cursor: pointer;
-      z-index: 1001;
+      margin-right: 16px;
+      transition: color 0.2s;
+    }
+
+    .menu-toggle:hover {
+      color: #ef4444;
+    }
+
+    .header-title {
+      font-size: 1.6rem;
+      font-weight: bold;
     }
 
     .side-panel {
       position: fixed;
       top: 0;
-      left: -250px;
-      width: 250px;
+      left: -260px;
+      width: 260px;
       height: 100%;
       background-color: #1c1a22;
       color: #f87171;
       padding: 20px;
       transition: left 0.3s ease;
       z-index: 1000;
+      overflow-y: auto;
     }
 
     .side-panel.open {
@@ -53,6 +62,8 @@
 
     .side-panel h2 {
       margin-top: 0;
+      font-size: 1.5rem;
+      margin-bottom: 20px;
     }
 
     .side-panel ul {
@@ -63,20 +74,34 @@
     .side-panel li {
       margin-bottom: 15px;
       cursor: pointer;
+      transition: color 0.2s;
+    }
+
+    .side-panel li:hover {
+      color: #ef4444;
     }
 
     .panel-content {
       margin-top: 20px;
       font-style: italic;
-      color: #f87171;
+    }
+
+    .container {
+      padding: 40px 24px;
+      max-width: 1000px;
+      margin: auto;
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 2.5rem;
+      margin-bottom: 40px;
     }
 
     .grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
       gap: 20px;
-      max-width: 1000px;
-      margin: 0 auto;
     }
 
     .card {
@@ -126,69 +151,74 @@
 </head>
 <body>
 
-  <button class="menu-toggle" onclick="togglePanel()">☰</button>
+  <header>
+    <button class="menu-toggle" onclick="togglePanel()">☰</button>
+    <div class="header-title">Spare Stack</div>
+  </header>
 
   <div class="side-panel" id="sidePanel">
-    <h2>Spare Stack</h2>
+    <h2>Navigation</h2>
     <ul>
       <li onclick="showUnderConstruction()">Account Manager</li>
     </ul>
     <div class="panel-content" id="panelContent"></div>
   </div>
 
-  <h1>Spare Stack Dashboard</h1>
+  <div class="container">
+    <h1>Spare Stack Dashboard</h1>
 
-  <div class="grid">
-    <!-- User Management Boxes -->
-    <div class="card">
-      <div class="card-header" onclick="toggleCard(this)">
-        <h2>Whitelisted Users</h2>
-        <div class="main-info">23</div>
+    <div class="grid">
+      <!-- User Management Cards -->
+      <div class="card">
+        <div class="card-header" onclick="toggleCard(this)">
+          <h2>Whitelisted Users</h2>
+          <div class="main-info">23</div>
+        </div>
+        <div class="details">
+          • user1#1234<br/>
+          • user2#5678<br/>
+          • user3#9999<br/>
+          <br/>
+          Full list stored in whitelist.txt
+        </div>
       </div>
-      <div class="details">
-        • user1#1234<br/>
-        • user2#5678<br/>
-        • user3#9999<br/>
-        <br/>
-        Full list stored in whitelist.txt
-      </div>
-    </div>
 
-    <div class="card">
-      <div class="card-header" onclick="toggleCard(this)">
-        <h2>Blacklisted Users</h2>
-        <div class="main-info">4</div>
+      <div class="card">
+        <div class="card-header" onclick="toggleCard(this)">
+          <h2>Blacklisted Users</h2>
+          <div class="main-info">4</div>
+        </div>
+        <div class="details">
+          • toxicguy#4444<br/>
+          • spammer#2222<br/>
+          Reason: Spam, abuse<br/>
+          <br/>
+          Stored in blacklist.txt
+        </div>
       </div>
-      <div class="details">
-        • toxicguy#4444<br/>
-        • spammer#2222<br/>
-        Reason: Spam, abuse<br/>
-        <br/>
-        Stored in blacklist.txt
-      </div>
-    </div>
 
-    <div class="card">
-      <div class="card-header" onclick="toggleCard(this)">
-        <h2>Admin Users</h2>
-        <div class="main-info">3</div>
+      <div class="card">
+        <div class="card-header" onclick="toggleCard(this)">
+          <h2>Admin Users</h2>
+          <div class="main-info">3</div>
+        </div>
+        <div class="details">
+          • dev#0001<br/>
+          • owner#9999<br/>
+          Permissions: Full access
+        </div>
       </div>
-      <div class="details">
-        • dev#0001<br/>
-        • owner#9999<br/>
-        Permissions: Full access
-      </div>
-    </div>
 
-    <div class="card">
-      <div class="card-header" onclick="toggleCard(this)">
-        <h2>Premium Users</h2>
-        <div class="main-info">7</div>
-      </div>
-      <div class="details">
-        • premiumboi#1234<br/>
-        • vipuser#2020<br/>
-        Subscription: Monthly
+      <div class="card">
+        <div class="card-header" onclick="toggleCard(this)">
+          <h2>Premium Users</h2>
+          <div class="main-info">7</div>
+        </div>
+        <div class="details">
+          • premiumboi#1234<br/>
+          • vipuser#2020<br/>
+          Subscription: Monthly
+        </div>
       </div>
     </div>
   </div>
