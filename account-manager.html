@@ -221,39 +221,42 @@
       }
     });
 
-    function handleFile(file) {
-      const reader = new FileReader();
-      reader.onload = function (e) {
-        const lines = e.target.result.split('\n');
-        const service = serviceSelect.value;
+   function handleFile(file) {
+  const reader = new FileReader();
+  reader.onload = function (e) {
+    const lines = e.target.result.split('\n');
+    const service = serviceSelect.value;
 
-        let tempAccount = {};
-        lines.forEach(line => {
-          line = line.trim();
-          if (!line) return; // skip empty lines
-          if (line.startsWith('#')) return; // skip comment lines/numbers
+    let tempAccount = {};
+    lines.forEach(line => {
+      line = line.trim();
+      if (!line) return; // skip empty
+      if (line.startsWith('#')) return; // skip comment lines
 
-          if (line.startsWith('username:')) {
-            tempAccount.username = line.split('username:')[1].trim();
-          } else if (line.startsWith('password:')) {
-            tempAccount.password = line.split('password:')[1].trim();
+      // Use regex to extract key:value with optional spaces and case-insensitive keys
+      let match = line.match(/^(username|password)\s*:\s*(.+)$/i);
+      if (match) {
+        const key = match[1].toLowerCase();
+        const value = match[2].trim();
+        tempAccount[key] = value;
 
-            // When both username and password found, push and reset tempAccount
-            if (tempAccount.username && tempAccount.password) {
-              allAccounts.push({
-                service,
-                username: tempAccount.username,
-                password: tempAccount.password
-              });
-              tempAccount = {};
-            }
-          }
-        });
+        // If both username and password are collected
+        if (tempAccount.username && tempAccount.password) {
+          allAccounts.push({
+            service,
+            username: tempAccount.username,
+            password: tempAccount.password
+          });
+          tempAccount = {};
+        }
+      }
+    });
 
-        updateTable();
-      };
-      reader.readAsText(file);
-    }
+    updateTable();
+  };
+  reader.readAsText(file);
+}
+
 
     function updateTable() {
       const filter = filterSelect.value;
