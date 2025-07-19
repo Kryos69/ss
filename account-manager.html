@@ -61,13 +61,21 @@
       color: #f87171;
     }
 
+    label {
+      font-weight: bold;
+      display: block;
+      margin-bottom: 8px;
+      color: #ddd;
+    }
+
     select {
       background-color: #1f1f25;
-      border: 1px solid #444;
+      border: 1px solid #f87171;
       color: #fff;
       padding: 10px;
-      margin-bottom: 20px;
+      margin-bottom: 30px;
       border-radius: 6px;
+      font-size: 15px;
     }
 
     .dropzone {
@@ -111,7 +119,6 @@
     tr:hover {
       background-color: #2a2a32;
     }
-
   </style>
 </head>
 <body>
@@ -131,7 +138,8 @@
   <div class="main">
     <h1>Account Manager</h1>
 
-    <label for="serviceSelect">Choose Service:</label>
+    <!-- Upload -->
+    <label for="serviceSelect">Choose Service to Upload:</label>
     <select id="serviceSelect">
       <option value="roblox">Roblox</option>
       <option value="epic">Epic Games</option>
@@ -142,8 +150,18 @@
       Drag & Drop <code>accounts.txt</code> here or click to upload
     </div>
 
+    <!-- Analytics -->
     <div class="analytics">
       <h2>Account Analytics</h2>
+
+      <label for="filterSelect">Filter by Service:</label>
+      <select id="filterSelect">
+        <option value="all">All</option>
+        <option value="roblox">Roblox</option>
+        <option value="epic">Epic Games</option>
+        <option value="steam">Steam</option>
+      </select>
+
       <table id="accountTable">
         <thead>
           <tr>
@@ -152,7 +170,7 @@
           </tr>
         </thead>
         <tbody>
-          <!-- Entries will go here -->
+          <!-- Entries will be dynamically added -->
         </tbody>
       </table>
     </div>
@@ -162,6 +180,9 @@
     const dropzone = document.getElementById('dropzone');
     const accountTable = document.getElementById('accountTable').querySelector('tbody');
     const serviceSelect = document.getElementById('serviceSelect');
+    const filterSelect = document.getElementById('filterSelect');
+
+    let allAccounts = []; // Holds { service, username }
 
     dropzone.addEventListener('click', () => {
       const input = document.createElement('input');
@@ -194,21 +215,38 @@
         const lines = e.target.result.split('\n').map(line => line.trim()).filter(Boolean);
         const service = serviceSelect.value;
 
-        lines.forEach(line => {
-          const tr = document.createElement('tr');
-          const serviceCell = document.createElement('td');
-          const userCell = document.createElement('td');
-
-          serviceCell.textContent = service.charAt(0).toUpperCase() + service.slice(1);
-          userCell.textContent = line;
-
-          tr.appendChild(serviceCell);
-          tr.appendChild(userCell);
-          accountTable.appendChild(tr);
+        lines.forEach(username => {
+          allAccounts.push({ service, username });
         });
+
+        updateTable();
       };
       reader.readAsText(file);
     }
+
+    function updateTable() {
+      const selectedFilter = filterSelect.value;
+      accountTable.innerHTML = '';
+
+      const filtered = selectedFilter === 'all'
+        ? allAccounts
+        : allAccounts.filter(acc => acc.service === selectedFilter);
+
+      filtered.forEach(acc => {
+        const tr = document.createElement('tr');
+        tr.innerHTML = `
+          <td>${capitalize(acc.service)}</td>
+          <td>${acc.username}</td>
+        `;
+        accountTable.appendChild(tr);
+      });
+    }
+
+    function capitalize(word) {
+      return word.charAt(0).toUpperCase() + word.slice(1);
+    }
+
+    filterSelect.addEventListener('change', updateTable);
   </script>
 
 </body>
