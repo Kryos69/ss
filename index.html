@@ -3,13 +3,13 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Bot Dashboard</title>
+  <title>Spare Stack</title>
   <style>
     body {
       margin: 0;
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       background-color: #0e0d13;
-      color: #c084fc;
+      color: #f87171;
       padding: 40px;
     }
 
@@ -17,6 +17,58 @@
       text-align: center;
       font-size: 2.5rem;
       margin-bottom: 40px;
+      color: #f87171;
+    }
+
+    .menu-toggle {
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      background-color: #1f1b24;
+      color: #f87171;
+      border: none;
+      padding: 10px 14px;
+      font-size: 1.2rem;
+      border-radius: 4px;
+      cursor: pointer;
+      z-index: 1001;
+    }
+
+    .side-panel {
+      position: fixed;
+      top: 0;
+      left: -250px;
+      width: 250px;
+      height: 100%;
+      background-color: #1c1a22;
+      color: #f87171;
+      padding: 20px;
+      transition: left 0.3s ease;
+      z-index: 1000;
+    }
+
+    .side-panel.open {
+      left: 0;
+    }
+
+    .side-panel h2 {
+      margin-top: 0;
+    }
+
+    .side-panel ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .side-panel li {
+      margin-bottom: 15px;
+      cursor: pointer;
+    }
+
+    .panel-content {
+      margin-top: 20px;
+      font-style: italic;
+      color: #f87171;
     }
 
     .grid {
@@ -29,14 +81,14 @@
 
     .card {
       background-color: #1c1a22;
-      border: 1px solid #c084fc50;
+      border: 1px solid #f8717150;
       border-radius: 10px;
       transition: all 0.2s ease;
       overflow: hidden;
     }
 
     .card:hover {
-      box-shadow: 0 0 15px rgba(192, 132, 252, 0.2);
+      box-shadow: 0 0 15px rgba(248, 113, 113, 0.2);
     }
 
     .card-header {
@@ -60,7 +112,7 @@
       max-height: 0;
       overflow: hidden;
       transition: max-height 0.3s ease, padding 0.3s ease;
-      border-top: 1px solid #c084fc20;
+      border-top: 1px solid #f8717120;
       font-family: monospace;
       font-size: 0.95rem;
       padding: 0 20px;
@@ -70,84 +122,73 @@
       max-height: 300px;
       padding: 15px 20px;
     }
-
-    .account-input {
-      margin-top: 10px;
-      display: flex;
-      gap: 10px;
-    }
-
-    .account-input input {
-      flex: 1;
-      padding: 6px;
-      background-color: #0f0e15;
-      border: 1px solid #c084fc80;
-      color: #c084fc;
-      border-radius: 4px;
-    }
-
-    .account-input button {
-      padding: 6px 14px;
-      background-color: #c084fc;
-      color: #0e0d13;
-      font-weight: bold;
-      border: none;
-      border-radius: 4px;
-      cursor: pointer;
-    }
-
-    .account-input button:hover {
-      background-color: #a855f7;
-    }
   </style>
 </head>
 <body>
 
-  <h1>🤖 Discord Bot Dashboard</h1>
+  <button class="menu-toggle" onclick="togglePanel()">☰</button>
+
+  <div class="side-panel" id="sidePanel">
+    <h2>Spare Stack</h2>
+    <ul>
+      <li onclick="showUnderConstruction()">Account Manager</li>
+    </ul>
+    <div class="panel-content" id="panelContent"></div>
+  </div>
+
+  <h1>Spare Stack Dashboard</h1>
 
   <div class="grid">
-    <!-- Card 1: Accounts Generated -->
+    <!-- User Management Boxes -->
     <div class="card">
       <div class="card-header" onclick="toggleCard(this)">
-        <h2>Accounts Generated</h2>
-        <div class="main-info">42</div>
+        <h2>Whitelisted Users</h2>
+        <div class="main-info">23</div>
       </div>
       <div class="details">
-        • account1@example.com:pass123<br/>
-        • account2@example.com:pass456<br/>
-        • account3@example.com:pass789<br/>
+        • user1#1234<br/>
+        • user2#5678<br/>
+        • user3#9999<br/>
         <br/>
-        Total: 3 shown (from 42)
+        Full list stored in whitelist.txt
       </div>
     </div>
 
-    <!-- Card 2: Bot Status -->
     <div class="card">
       <div class="card-header" onclick="toggleCard(this)">
-        <h2>Bot Status</h2>
-        <div class="main-info">Online</div>
+        <h2>Blacklisted Users</h2>
+        <div class="main-info">4</div>
       </div>
       <div class="details">
-        • Uptime: 1h 23m<br/>
-        • Ping: 80ms<br/>
-        • Last Restart: 10:42 AM<br/>
-        • Version: v1.3.2
+        • toxicguy#4444<br/>
+        • spammer#2222<br/>
+        Reason: Spam, abuse<br/>
+        <br/>
+        Stored in blacklist.txt
       </div>
     </div>
 
-    <!-- Card 3: Add Account -->
     <div class="card">
       <div class="card-header" onclick="toggleCard(this)">
-        <h2>Add Account</h2>
-        <div class="main-info">+</div>
+        <h2>Admin Users</h2>
+        <div class="main-info">3</div>
       </div>
       <div class="details">
-        <div class="account-input">
-          <input type="text" placeholder="email:password">
-          <button>Add</button>
-        </div>
-        <br/>
-        This doesn’t work yet — just a placeholder for now.
+        • dev#0001<br/>
+        • owner#9999<br/>
+        Permissions: Full access
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header" onclick="toggleCard(this)">
+        <h2>Premium Users</h2>
+        <div class="main-info">7</div>
+      </div>
+      <div class="details">
+        • premiumboi#1234<br/>
+        • vipuser#2020<br/>
+        Subscription: Monthly
       </div>
     </div>
   </div>
@@ -164,6 +205,16 @@
       });
 
       clickedCard.classList.toggle("open");
+    }
+
+    function togglePanel() {
+      const panel = document.getElementById("sidePanel");
+      panel.classList.toggle("open");
+    }
+
+    function showUnderConstruction() {
+      const content = document.getElementById("panelContent");
+      content.innerHTML = "⚠️ Account Manager is under construction.";
     }
   </script>
 </body>
