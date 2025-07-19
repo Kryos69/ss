@@ -14,7 +14,7 @@
 
     header {
       background-color: #1c1a22;
-      padding: 16px 24px;
+      padding: 12px 24px;
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -34,7 +34,7 @@
       background: none;
       border: none;
       color: #f87171;
-      font-size: 1.8rem;
+      font-size: 1.6rem;
       cursor: pointer;
       padding: 0;
       line-height: 1;
@@ -46,7 +46,7 @@
     }
 
     .header-title {
-      font-size: 1.6rem;
+      font-size: 1.4rem;
       font-weight: bold;
     }
 
@@ -68,15 +68,35 @@
       left: 0;
     }
 
-    .side-panel h2 {
-      margin-top: 0;
-      font-size: 1.5rem;
+    .side-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
       margin-bottom: 20px;
+    }
+
+    .side-panel h2 {
+      margin: 0;
+      font-size: 1.3rem;
+    }
+
+    .close-btn {
+      font-size: 1.3rem;
+      background: none;
+      border: none;
+      color: #f87171;
+      cursor: pointer;
+      transition: color 0.2s ease;
+    }
+
+    .close-btn:hover {
+      color: #ef4444;
     }
 
     .side-panel ul {
       list-style: none;
       padding: 0;
+      margin-top: 10px;
     }
 
     .side-panel li {
@@ -159,21 +179,27 @@
 </head>
 <body>
 
+  <!-- Header with left-aligned button -->
   <header>
     <div class="left-header">
-      <button class="menu-toggle" id="menuButton" onclick="togglePanel()">☰</button>
+      <button class="menu-toggle" onclick="togglePanel()">☰</button>
       <div class="header-title">Spare Stack</div>
     </div>
   </header>
 
+  <!-- Sidebar panel -->
   <div class="side-panel" id="sidePanel">
-    <h2>Navigation</h2>
+    <div class="side-header">
+      <h2>Navigation</h2>
+      <button class="close-btn" onclick="togglePanel()">❌</button>
+    </div>
     <ul>
       <li onclick="showUnderConstruction()">Account Manager</li>
     </ul>
     <div class="panel-content" id="panelContent"></div>
   </div>
 
+  <!-- Main content -->
   <div class="container">
     <h1>Spare Stack Dashboard</h1>
 
@@ -232,6 +258,7 @@
     </div>
   </div>
 
+  <!-- Scripts -->
   <script>
     function toggleCard(headerElement) {
       const clickedCard = headerElement.closest(".card");
@@ -248,9 +275,7 @@
 
     function togglePanel() {
       const panel = document.getElementById("sidePanel");
-      const btn = document.getElementById("menuButton");
       panel.classList.toggle("open");
-      btn.textContent = panel.classList.contains("open") ? '❌' : '☰';
     }
 
     function showUnderConstruction() {
