@@ -9,135 +9,203 @@
       margin: 0;
       background-color: #0e0d13;
       font-family: 'Segoe UI', sans-serif;
-      color: #f87171;
+      color: #e5e5e5;
       display: flex;
-      flex-direction: column;
-      align-items: center;
-      padding: 40px 20px;
+    }
+
+    /* Sidebar */
+    .sidebar {
+      background-color: #1a1a1d;
+      color: #fff;
+      width: 240px;
+      height: 100vh;
+      padding: 20px;
+      box-sizing: border-box;
+    }
+
+    .sidebar h2 {
+      color: #f87171;
+      margin: 0 0 20px 0;
+    }
+
+    .sidebar ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .sidebar ul li {
+      margin: 10px 0;
+    }
+
+    .sidebar ul li a {
+      color: #e5e5e5;
+      text-decoration: none;
+      font-weight: bold;
+      display: block;
+      padding: 8px 12px;
+      border-radius: 6px;
+      transition: background 0.2s;
+    }
+
+    .sidebar ul li a:hover {
+      background-color: #f8717120;
+    }
+
+    /* Main content */
+    .main {
+      flex: 1;
+      padding: 40px;
     }
 
     h1 {
-      font-size: 2rem;
-      margin-bottom: 20px;
       color: #f87171;
-    }
-
-    .panel {
-      background-color: #1c1a22;
-      border: 1px solid #f8717150;
-      border-radius: 10px;
-      padding: 30px;
-      width: 100%;
-      max-width: 600px;
-      box-shadow: 0 0 10px rgba(248, 113, 113, 0.2);
-    }
-
-    .dropdown {
-      width: 100%;
-      margin-bottom: 20px;
     }
 
     select {
-      width: 100%;
+      background-color: #1f1f25;
+      border: 1px solid #444;
+      color: #fff;
       padding: 10px;
-      font-size: 1rem;
-      border-radius: 5px;
-      border: none;
-      background-color: #2a2933;
-      color: #f87171;
+      margin-bottom: 20px;
+      border-radius: 6px;
     }
 
-    .drop-area {
+    .dropzone {
       border: 2px dashed #f87171;
-      border-radius: 10px;
-      padding: 40px;
+      padding: 30px;
       text-align: center;
-      transition: background 0.2s ease;
+      border-radius: 10px;
+      cursor: pointer;
+      margin-bottom: 40px;
     }
 
-    .drop-area.hover {
+    .dropzone.dragover {
       background-color: #f8717115;
     }
 
-    .file-info {
-      margin-top: 15px;
-      font-size: 0.95rem;
-      color: #ccc;
+    .analytics {
+      margin-top: 40px;
     }
 
-    .account-count {
-      margin-top: 10px;
-      font-weight: bold;
+    .analytics h2 {
+      color: #f87171;
+      margin-bottom: 15px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background-color: #1f1f25;
+    }
+
+    th, td {
+      padding: 12px;
+      text-align: left;
+      border-bottom: 1px solid #333;
+    }
+
+    th {
       color: #f87171;
     }
+
+    tr:hover {
+      background-color: #2a2a32;
+    }
+
   </style>
 </head>
 <body>
 
-  <h1>Account Manager</h1>
-  <div class="panel">
-    <div class="dropdown">
-      <label for="service-select">Choose service:</label><br />
-      <select id="service-select">
-        <option value="roblox">Roblox</option>
-        <option value="coming-soon" disabled>Steam (Coming Soon)</option>
-        <option value="coming-soon" disabled>Epic Games (Coming Soon)</option>
-      </select>
+  <!-- Sidebar -->
+  <div class="sidebar">
+    <h2>Spare Stack</h2>
+    <ul>
+      <li><a href="index.html">Dashboard</a></li>
+      <li><a href="account-manager.html">Account Manager</a></li>
+      <li><a href="#">Bot Status</a></li>
+      <li><a href="#">User Management</a></li>
+    </ul>
+  </div>
+
+  <!-- Main Panel -->
+  <div class="main">
+    <h1>Account Manager</h1>
+
+    <label for="serviceSelect">Choose Service:</label>
+    <select id="serviceSelect">
+      <option value="roblox">Roblox</option>
+      <option value="epic">Epic Games</option>
+      <option value="steam">Steam</option>
+    </select>
+
+    <div class="dropzone" id="dropzone">
+      Drag & Drop <code>accounts.txt</code> here or click to upload
     </div>
 
-    <div id="drop-area" class="drop-area">
-      <p>Drag & drop your <strong>accounts.txt</strong> here<br />or click to upload</p>
-      <input type="file" id="fileElem" accept=".txt" style="display:none">
-      <div class="file-info" id="file-info">No file uploaded yet.</div>
-      <div class="account-count" id="account-count"></div>
+    <div class="analytics">
+      <h2>Account Analytics</h2>
+      <table id="accountTable">
+        <thead>
+          <tr>
+            <th>Service</th>
+            <th>Username</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Entries will go here -->
+        </tbody>
+      </table>
     </div>
   </div>
 
   <script>
-    const dropArea = document.getElementById('drop-area');
-    const fileElem = document.getElementById('fileElem');
-    const fileInfo = document.getElementById('file-info');
-    const accountCount = document.getElementById('account-count');
+    const dropzone = document.getElementById('dropzone');
+    const accountTable = document.getElementById('accountTable').querySelector('tbody');
+    const serviceSelect = document.getElementById('serviceSelect');
 
-    dropArea.addEventListener('click', () => fileElem.click());
+    dropzone.addEventListener('click', () => {
+      const input = document.createElement('input');
+      input.type = 'file';
+      input.accept = '.txt';
+      input.onchange = () => handleFile(input.files[0]);
+      input.click();
+    });
 
-    dropArea.addEventListener('dragover', (e) => {
+    dropzone.addEventListener('dragover', (e) => {
       e.preventDefault();
-      dropArea.classList.add('hover');
+      dropzone.classList.add('dragover');
     });
 
-    dropArea.addEventListener('dragleave', () => {
-      dropArea.classList.remove('hover');
+    dropzone.addEventListener('dragleave', () => {
+      dropzone.classList.remove('dragover');
     });
 
-    dropArea.addEventListener('drop', (e) => {
+    dropzone.addEventListener('drop', (e) => {
       e.preventDefault();
-      dropArea.classList.remove('hover');
-      const file = e.dataTransfer.files[0];
-      handleFile(file);
-    });
-
-    fileElem.addEventListener('change', (e) => {
-      if (e.target.files.length > 0) {
-        handleFile(e.target.files[0]);
+      dropzone.classList.remove('dragover');
+      if (e.dataTransfer.files.length) {
+        handleFile(e.dataTransfer.files[0]);
       }
     });
 
     function handleFile(file) {
-      if (!file || file.type !== "text/plain") {
-        fileInfo.textContent = "❌ Invalid file. Please upload a .txt file.";
-        accountCount.textContent = "";
-        return;
-      }
-
-      fileInfo.textContent = `✔ Uploaded: ${file.name}`;
-
       const reader = new FileReader();
-      reader.onload = function(e) {
-        const content = e.target.result;
-        const lines = content.split(/\\r?\\n/).filter(line => line.trim().length > 0);
-        accountCount.textContent = `✅ ${lines.length} accounts loaded.`;
-        console.log("Loaded accounts:", lines); // You can use this data later
+      reader.onload = function (e) {
+        const lines = e.target.result.split('\n').map(line => line.trim()).filter(Boolean);
+        const service = serviceSelect.value;
+
+        lines.forEach(line => {
+          const tr = document.createElement('tr');
+          const serviceCell = document.createElement('td');
+          const userCell = document.createElement('td');
+
+          serviceCell.textContent = service.charAt(0).toUpperCase() + service.slice(1);
+          userCell.textContent = line;
+
+          tr.appendChild(serviceCell);
+          tr.appendChild(userCell);
+          accountTable.appendChild(tr);
+        });
       };
       reader.readAsText(file);
     }
