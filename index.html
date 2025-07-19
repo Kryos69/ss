@@ -17,7 +17,6 @@
       padding: 12px 24px;
       display: flex;
       align-items: center;
-      justify-content: space-between;
       position: sticky;
       top: 0;
       z-index: 999;
@@ -50,68 +49,62 @@
       font-weight: bold;
     }
 
-    .side-panel {
+    /* Sidebar */
+    .sidebar {
       position: fixed;
       top: 0;
-      left: -260px;
+      left: -280px;
       width: 260px;
-      height: 100%;
-      background-color: #1c1a22;
+      height: 100vh;
+      background-color: #15141a;
       color: #f87171;
-      padding: 20px;
       transition: left 0.3s ease;
-      z-index: 1000;
-      overflow-y: auto;
+      box-shadow: 2px 0 10px rgba(0,0,0,0.3);
+      z-index: 1001;
+      display: flex;
+      flex-direction: column;
     }
 
-    .side-panel.open {
+    .sidebar.open {
       left: 0;
     }
 
-    .side-header {
+    .sidebar-header {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-bottom: 20px;
+      padding: 20px;
+      font-weight: bold;
+      font-size: 1.2rem;
+      background: #1c1a22;
+      border-bottom: 1px solid #f8717125;
     }
 
-    .side-panel h2 {
-      margin: 0;
-      font-size: 1.3rem;
-    }
-
-    .close-btn {
-      font-size: 1.3rem;
+    .close-sidebar {
       background: none;
       border: none;
+      font-size: 1.5rem;
       color: #f87171;
       cursor: pointer;
-      transition: color 0.2s ease;
     }
 
-    .close-btn:hover {
-      color: #ef4444;
-    }
-
-    .side-panel ul {
+    .sidebar-nav {
       list-style: none;
       padding: 0;
+      margin: 0;
       margin-top: 10px;
     }
 
-    .side-panel li {
-      margin-bottom: 15px;
+    .sidebar-nav li {
+      padding: 15px 20px;
       cursor: pointer;
-      transition: color 0.2s;
+      transition: background 0.2s ease, padding-left 0.2s ease;
+      font-size: 1rem;
     }
 
-    .side-panel li:hover {
-      color: #ef4444;
-    }
-
-    .panel-content {
-      margin-top: 20px;
-      font-style: italic;
+    .sidebar-nav li:hover {
+      background-color: #f8717115;
+      padding-left: 28px;
     }
 
     .container {
@@ -179,27 +172,29 @@
 </head>
 <body>
 
-  <!-- Header with left-aligned button -->
+  <!-- Header with top-left toggle -->
   <header>
     <div class="left-header">
-      <button class="menu-toggle" onclick="togglePanel()">☰</button>
+      <button class="menu-toggle" onclick="toggleSidebar()">☰</button>
       <div class="header-title">Spare Stack</div>
     </div>
   </header>
 
-  <!-- Sidebar panel -->
-  <div class="side-panel" id="sidePanel">
-    <div class="side-header">
-      <h2>Navigation</h2>
-      <button class="close-btn" onclick="togglePanel()">❌</button>
+  <!-- Sidebar -->
+  <div class="sidebar" id="sidebar">
+    <div class="sidebar-header">
+      <span>Spare Stack</span>
+      <button class="close-sidebar" onclick="toggleSidebar()">×</button>
     </div>
-    <ul>
-      <li onclick="showUnderConstruction()">Account Manager</li>
+    <ul class="sidebar-nav">
+      <li onclick="showUnderConstruction()">📁 Account Manager</li>
+      <li>🧪 Logs</li>
+      <li>🔧 Settings</li>
+      <li>📊 Analytics</li>
     </ul>
-    <div class="panel-content" id="panelContent"></div>
   </div>
 
-  <!-- Main content -->
+  <!-- Main dashboard -->
   <div class="container">
     <h1>Spare Stack Dashboard</h1>
 
@@ -258,7 +253,7 @@
     </div>
   </div>
 
-  <!-- Scripts -->
+  <!-- JS for interactivity -->
   <script>
     function toggleCard(headerElement) {
       const clickedCard = headerElement.closest(".card");
@@ -273,14 +268,13 @@
       clickedCard.classList.toggle("open");
     }
 
-    function togglePanel() {
-      const panel = document.getElementById("sidePanel");
-      panel.classList.toggle("open");
+    function toggleSidebar() {
+      const sidebar = document.getElementById('sidebar');
+      sidebar.classList.toggle('open');
     }
 
     function showUnderConstruction() {
-      const content = document.getElementById("panelContent");
-      content.innerHTML = "⚠️ Account Manager is under construction.";
+      alert("⚠️ Account Manager is under construction.");
     }
   </script>
 </body>
