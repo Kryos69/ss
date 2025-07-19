@@ -154,8 +154,16 @@
 
   <script>
     function toggleCard(headerElement) {
-      const card = headerElement.closest(".card");
-      card.classList.toggle("open");
+      const clickedCard = headerElement.closest(".card");
+      const allCards = document.querySelectorAll(".card");
+
+      allCards.forEach(card => {
+        if (card !== clickedCard) {
+          card.classList.remove("open");
+        }
+      });
+
+      clickedCard.classList.toggle("open");
     }
   </script>
 </body>
