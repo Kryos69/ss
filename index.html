@@ -2,63 +2,133 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Bot Control Panel</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Bot Dashboard</title>
   <style>
     body {
       margin: 0;
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background-color: #0f1117;
+      background-color: #0e1015;
       color: #00ffe7;
       display: flex;
       flex-direction: column;
-      justify-content: center;
       align-items: center;
-      height: 100vh;
+      padding: 40px;
     }
 
     h1 {
       font-size: 2.5rem;
-      margin-bottom: 10px;
+      margin-bottom: 20px;
     }
 
-    p {
+    .dashboard {
+      background-color: #1a1d24;
+      padding: 30px;
+      border-radius: 12px;
+      width: 90%;
+      max-width: 800px;
+      box-shadow: 0 0 20px rgba(0, 255, 231, 0.1);
+    }
+
+    .section {
+      margin-bottom: 30px;
+    }
+
+    .label {
       font-size: 1.2rem;
+      margin-bottom: 10px;
+      display: block;
       color: #9effff;
-      opacity: 0.8;
-    }
-
-    .console-box {
-      margin-top: 40px;
-      background-color: #1a1d25;
-      padding: 20px 30px;
-      border-radius: 8px;
-      border: 1px solid #00ffe7;
-      font-family: monospace;
-      color: #00ffe7;
-      max-width: 600px;
-      text-align: left;
     }
 
     .status {
-      color: #0f0;
+      color: lime;
+      font-weight: bold;
     }
 
-    .coming-soon {
-      font-style: italic;
-      opacity: 0.5;
+    .count {
+      font-size: 2rem;
+      color: #00ffe7;
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+      margin-top: 10px;
+      background: #0f1117;
+      border: 1px solid #00ffe740;
+      border-radius: 6px;
+      max-height: 150px;
+      overflow-y: auto;
+    }
+
+    li {
+      padding: 8px 12px;
+      border-bottom: 1px solid #00ffe711;
+      font-family: monospace;
+    }
+
+    .add-account {
+      display: flex;
+      gap: 10px;
+      margin-top: 10px;
+    }
+
+    input {
+      flex: 1;
+      padding: 8px;
+      background-color: #0f1117;
+      border: 1px solid #00ffe780;
+      color: #00ffe7;
+      border-radius: 4px;
+    }
+
+    button {
+      padding: 8px 16px;
+      background-color: #00ffe7;
+      color: #0e1015;
+      font-weight: bold;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #00ccc2;
     }
   </style>
 </head>
 <body>
-  <h1>🤖 Bot Control Center</h1>
-  <p>Welcome to your bot dashboard.</p>
+  <h1>🤖 Discord Bot Dashboard</h1>
+  <div class="dashboard">
+    
+    <div class="section">
+      <span class="label">Bot Status:</span>
+      <span class="status">ONLINE</span> <!-- Just placeholder text -->
+    </div>
 
-  <div class="console-box">
-    > System Status: <span class="status">ONLINE</span><br/>
-    > Modules: Loading...<br/>
-    > UI: Placeholder Loaded ✅<br/>
-    > Next step: Integrate commands <span class="coming-soon">(coming soon)</span>
+    <div class="section">
+      <span class="label">Accounts Generated:</span>
+      <span class="count">42</span> <!-- Placeholder count -->
+    </div>
+
+    <div class="section">
+      <span class="label">Account List:</span>
+      <ul>
+        <li>account1@example.com:password</li>
+        <li>account2@example.com:password</li>
+        <li>account3@example.com:password</li>
+      </ul>
+    </div>
+
+    <div class="section">
+      <span class="label">Add New Account:</span>
+      <div class="add-account">
+        <input type="text" placeholder="email:password" />
+        <button>Add</button>
+      </div>
+    </div>
+
   </div>
 </body>
 </html>
