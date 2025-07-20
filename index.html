@@ -1,106 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Spare Stack Dashboard</title>
-    <link rel="stylesheet" href="style.css">
-    </head>
-<body>
-    <div class="dashboard-container">
-        <header class="dashboard-header">
-            <div class="logo">
-                <img src="logo.png" alt="Spare Stack Logo"> <span>Spare Stack</span>
-            </div>
-            <div class="header-actions">
-                <button class="status-button online">Online</button>
-                <button class="refresh-button">
-                    <img src="refresh-icon.png" alt="Refresh Data"> Refresh Data
-                </button>
-            </div>
-        </header>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>spare-stack-control-panel</title>
+    <meta name="description" content="Lovable Generated Project" />
+    <meta name="author" content="Lovable" />
 
-        <main class="dashboard-content">
-            <section class="welcome-section">
-                <h1>Dashboard</h1>
-                <p>Welcome back! Here's your alt account overview.</p>
-            </section>
+    <meta property="og:title" content="spare-stack-control-panel" />
+    <meta property="og:description" content="Lovable Generated Project" />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="https://lovable.dev/opengraph-image-p98pqg.png" />
 
-            <section class="overview-cards">
-                <div class="card total-accounts">
-                    <div class="card-icon"></div> <h3>Total Accounts</h3>
-                    <p class="metric">2,547</p>
-                    <p class="change positive">⬆️ +12% from last month</p>
-                </div>
-                <div class="card active-accounts">
-                    <div class="card-icon"></div> <h3>Active Accounts</h3>
-                    <p class="metric">1,823</p>
-                    <p class="change positive">⬆️ +6% from last month</p>
-                </div>
-                <div class="card premium-users">
-                    <div class="card-icon"></div> <h3>Premium Users</h3>
-                    <p class="metric">156</p>
-                    <p class="change negative">⬇️ -2% from last month</p>
-                </div>
-                <div class="card blacklisted-users">
-                    <div class="card-icon"></div> <h3>Blacklisted Users</h3>
-                    <p class="metric">23</p>
-                    <p class="change negative">⬇️ -5% from last month</p>
-                </div>
-            </section>
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@lovable_dev" />
+    <meta name="twitter:image" content="https://lovable.dev/opengraph-image-p98pqg.png" />
+  </head>
 
-            <section class="dashboard-sections-grid">
-                <div class="section bot-status-monitor">
-                    <h2>Bot Status Monitor</h2>
-                    <div class="bot-status-item">
-                        <span>Main Bot</span>
-                        <span class="status-indicator online">Online</span>
-                    </div>
-                    <div class="bot-status-item">
-                        <span>Backup Bot</span>
-                        <span class="status-indicator offline">Offline</span>
-                    </div>
-                    <div class="bot-status-item">
-                        <span>Uptime</span>
-                        <span>99.2%</span>
-                    </div>
-                    <div class="bot-actions">
-                        <button class="action-button">
-                            <img src="restart-icon.png" alt="Restart"> Restart
-                        </button>
-                        <button class="action-button">View Logs</button>
-                    </div>
-                </div>
-
-                <div class="section recent-activity">
-                    <h2>Recent Activity</h2>
-                    <div class="activity-list">
-                        <div class="activity-item">
-                            <p>New account created</p>
-                            <span>by user_1234</span>
-                            <span class="timestamp">2 minutes ago</span>
-                        </div>
-                        <div class="activity-item">
-                            <p>Bot restarted</p>
-                            <span>by system</span>
-                            <span class="timestamp">15 minutes ago</span>
-                        </div>
-                        <div class="activity-item">
-                            <p>User promoted to premium</p>
-                            <span>by user_5678</span>
-                            <span class="timestamp">1 hour ago</span>
-                        </div>
-                        <div class="activity-item">
-                            <p>Account blacklisted</p>
-                            <span>by user_9999</span>
-                            <span class="timestamp">2 hours ago</span>
-                        </div>
-                        </div>
-                    <button class="view-all-activity-button">View All Activity</button>
-                </div>
-            </section>
-        </main>
-    </div>
-    <script src="script.js"></script>
-</body>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
 </html>
