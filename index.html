@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign in with Discord</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            text-align: center;
+        }
+        .discord-button {
+            background-color: #5865F2;
+            color: white;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: background-color 0.2s;
+        }
+        .discord-button:hover {
+            background-color: #4752C4;
+        }
+        .discord-button img {
+            width: 24px;
+            height: 24px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <button class="discord-button" onclick="redirectToDiscord()">
+            <img src="https://discord.com/assets/2c21aeda16de354ba93c.png" alt="Discord Logo">
+            Sign in with Discord
+        </button>
+    </div>
+
+    <script>
+        function redirectToDiscord() {
+            const clientId = 'CLIENT_ID';
+            const redirectUri = 'REDIRECT_URI';
+            const scopes = ['identify', 'email'];
+            
+            const authUrl = `https://discord.com/api/oauth2/authorize?client_id=${clientId}&redirect_uri=${encodeURIComponent(redirectUri)}&response_type=code&scope=${scopes.join('%20')}`;
+            
+            window.location.href = authUrl;
+        }
+    </script>
+</body>
+</html>
