@@ -4,10 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Spare Stack</title>
-
-  <!-- Google Font -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
-
   <style>
     :root {
       --accent: #e63946;
@@ -19,15 +16,19 @@
       box-sizing: border-box;
     }
 
+    html {
+      scroll-behavior: smooth;
+    }
+
     body {
       font-family: 'Inter', sans-serif;
       background-color: #0e0e10;
       color: #ffffff;
-      min-height: 100vh;
       display: flex;
       flex-direction: column;
     }
 
+    /* Navbar */
     header {
       width: 100%;
       padding: 1rem 2rem;
@@ -36,6 +37,9 @@
       align-items: center;
       background-color: #121214;
       border-bottom: 1px solid #222;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
     }
 
     .logo {
@@ -64,6 +68,7 @@
       color: #fff;
     }
 
+    /* Hero */
     .hero {
       flex: 1;
       display: flex;
@@ -71,14 +76,13 @@
       justify-content: center;
       align-items: center;
       text-align: center;
-      padding: 3rem 1rem;
+      padding: 4rem 1rem 3rem;
     }
 
     .hero h1 {
       font-size: 3rem;
       margin-bottom: 1rem;
       font-weight: 600;
-      line-height: 1.15;
     }
 
     .hero .highlight {
@@ -115,22 +119,79 @@
       box-shadow: 0 6px 12px rgba(0, 0, 0, 0.35);
     }
 
+    /* Pricing */
+    #pricing {
+      padding: 4rem 2rem;
+      background-color: #111;
+      text-align: center;
+    }
+
+    #pricing h2 {
+      font-size: 2.5rem;
+      margin-bottom: 2rem;
+      color: #fff;
+    }
+
+    .pricing-cards {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      flex-wrap: wrap;
+    }
+
+    .card {
+      background-color: #1a1a1d;
+      border: 1px solid #2a2a2d;
+      border-radius: 12px;
+      padding: 2rem;
+      width: 300px;
+      transition: 0.3s;
+    }
+
+    .card:hover {
+      border-color: var(--accent);
+      transform: translateY(-5px);
+    }
+
+    .card h3 {
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+      color: var(--accent);
+    }
+
+    .card p {
+      color: #ccc;
+      font-size: 1rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .price {
+      font-size: 2rem;
+      font-weight: bold;
+      color: #fff;
+      margin-bottom: 1rem;
+    }
+
+    .card .btn {
+      display: inline-block;
+      margin-top: 1rem;
+    }
+
     footer {
       text-align: center;
-      padding: 1rem;
+      padding: 1.5rem;
       font-size: 0.9rem;
       color: #666;
       background-color: #121214;
     }
 
-    @media (max-width: 600px) {
+    @media (max-width: 700px) {
       .hero h1 {
         font-size: 2.2rem;
       }
-
-      nav {
+      .pricing-cards {
         flex-direction: column;
-        gap: 0.5rem;
+        align-items: center;
       }
     }
   </style>
@@ -157,6 +218,46 @@
       <a href="/login" class="btn">Login</a>
       <a href="/register" class="btn">Register</a>
       <a href="#accounts" class="btn">View Accounts</a>
+    </div>
+  </section>
+
+  <!-- PRICING SECTION -->
+  <section id="pricing">
+    <h2>Choose Your Plan</h2>
+    <div class="pricing-cards">
+      <div class="card">
+        <h3>VIP</h3>
+        <p>Basic access for casual users</p>
+        <div class="price>$3/mo</div>
+        <ul>
+          <li>⦿ 5 accounts/day</li>
+          <li>⦿ Standard support</li>
+          <li>⦿ Basic gen speeds</li>
+        </ul>
+        <a href="/register" class="btn">Get VIP</a>
+      </div>
+      <div class="card">
+        <h3>ELITE</h3>
+        <p>Great for regular users</p>
+        <div class="price>$7/mo</div>
+        <ul>
+          <li>⦿ 20 accounts/day</li>
+          <li>⦿ Priority support</li>
+          <li>⦿ Fast gen speeds</li>
+        </ul>
+        <a href="/register" class="btn">Get ELITE</a>
+      </div>
+      <div class="card">
+        <h3>ULTIMATE</h3>
+        <p>For power users & resellers</p>
+        <div class="price>$15/mo</div>
+        <ul>
+          <li>⦿ Unlimited accounts*</li>
+          <li>⦿ Dedicated support</li>
+          <li>⦿ Fastest speeds</li>
+        </ul>
+        <a href="/register" class="btn">Get ULTIMATE</a>
+      </div>
     </div>
   </section>
 
