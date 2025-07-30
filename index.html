@@ -230,12 +230,18 @@
       user-select: none;
     }
 
-    #payments .payment-method img {
-      width: 64px;
-      height: auto;
-      margin-bottom: 0.5rem;
-      filter: drop-shadow(0 0 2px var(--accent));
-    }
+ #payments .payment-method img {
+  width: 64px;
+  height: auto;
+  margin-bottom: 0.5rem;
+  filter: brightness(1.1) contrast(1.1); /* removed glow and improved clarity */
+  transition: transform 0.2s ease;
+}
+
+#payments .payment-method img:hover {
+  transform: scale(1.1); /* adds subtle hover effect */
+}
+
 
     footer {
       text-align: center;
@@ -350,7 +356,7 @@
         PayPal
       </div>
       <div class="payment-method">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/1/10/Robux_Icon.png" alt="Robux Icon" />
+       <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/48/Robux_2022_Logo.svg/512px-Robux_2022_Logo.svg.png" alt="Robux Icon" />
         Robux
       </div>
     </div>
