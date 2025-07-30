@@ -77,8 +77,8 @@
       justify-content: center;
       align-items: center;
       text-align: center;
-      padding: 6rem 1rem 3rem; /* more top padding to push pricing below fold */
-      min-height: 90vh; /* force viewport height so user must scroll */
+      padding: 6rem 1rem 3rem;
+      min-height: 90vh;
     }
 
     .hero h1 {
@@ -123,8 +123,8 @@
 
     /* Pricing */
     #pricing {
-      padding: 4rem 2rem;
-      background-color: #0e0e10; /* same as body for seamless background */
+      padding: 4rem 2rem 2rem;
+      background-color: #0e0e10;
       text-align: center;
     }
 
@@ -211,6 +211,32 @@
       text-align: center;
     }
 
+    /* Supported payments */
+    #payments {
+      margin-top: 3rem;
+      display: flex;
+      justify-content: center;
+      gap: 3rem;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    #payments .payment-method {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      color: #ccc;
+      font-size: 1rem;
+      user-select: none;
+    }
+
+    #payments .payment-method img {
+      width: 64px;
+      height: auto;
+      margin-bottom: 0.5rem;
+      filter: drop-shadow(0 0 2px var(--accent));
+    }
+
     footer {
       text-align: center;
       padding: 1.5rem;
@@ -247,6 +273,9 @@
         width: 90%;
         max-width: none;
       }
+      #payments {
+        gap: 2rem;
+      }
     }
   </style>
 </head>
@@ -282,7 +311,7 @@
       <div class="card">
         <h3>VIP</h3>
         <p>Basic access for casual users</p>
-        <div class="price">$3/mo</div>
+        <div class="price">$10 Lifetime</div>
         <ul class="benefits">
           <li>– PLACEHOLDER</li>
           <li>– PLACEHOLDER</li>
@@ -293,7 +322,7 @@
       <div class="card">
         <h3>ELITE</h3>
         <p>Great for regular users</p>
-        <div class="price">$7/mo</div>
+        <div class="price">$25 Lifetime</div>
         <ul class="benefits">
           <li>– PLACEHOLDER</li>
           <li>– PLACEHOLDER</li>
@@ -304,13 +333,25 @@
       <div class="card">
         <h3>ULTIMATE</h3>
         <p>For power users & resellers</p>
-        <div class="price">$15/mo</div>
+        <div class="price">$60 Lifetime</div>
         <ul class="benefits">
           <li>– PLACEHOLDER</li>
           <li>– PLACEHOLDER</li>
           <li>– PLACEHOLDER</li>
         </ul>
         <a href="/register" class="btn">Get ULTIMATE</a>
+      </div>
+    </div>
+
+    <!-- Supported Payments -->
+    <div id="payments" aria-label="Supported payment methods">
+      <div class="payment-method">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/b/b5/PayPal.svg" alt="PayPal Logo" />
+        PayPal
+      </div>
+      <div class="payment-method">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/1/10/Robux_Icon.png" alt="Robux Icon" />
+        Robux
       </div>
     </div>
   </section>
