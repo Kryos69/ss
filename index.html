@@ -230,23 +230,17 @@
       user-select: none;
     }
 
-    #payments .payment-method img {
-      width: 64px;
-      height: auto;
-      margin-bottom: 0.5rem;
-      filter: brightness(1.1) contrast(1.1);
-      transition: transform 0.2s ease;
-    }
+.payment-icon {
+  width: 48px;
+  height: 48px;
+  margin-bottom: 0.5rem;
+  transition: transform 0.2s ease;
+}
 
-    #payments .payment-method img:hover {
-      transform: scale(1.1);
-    }
-
-    /* ✅ Custom size just for Robux logo */
-    .robux-logo {
-      width: 15px;
-      height: auto;
-    }
+.payment-icon:hover {
+  transform: scale(1.1);
+}
+}
 
     footer {
       text-align: center;
@@ -359,17 +353,18 @@
       </div>
     </div>
 
-    <!-- Supported Payments -->
-    <div id="payments" aria-label="Supported payment methods">
-      <div class="payment-method">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/b/b5/PayPal.svg" alt="PayPal Logo" />
-        PayPal
-      </div>
-      <div class="payment-method">
-        <img class="robux-logo" src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c7/Robux_2019_Logo_gold.svg/512px-Robux_2019_Logo_gold.svg.png?20201227051146" alt="Robux Icon" />
-        Robux
-      </div>
-    </div>
+<!-- Supported Payments -->
+<div id="payments" aria-label="Supported payment methods">
+  <div class="payment-method">
+    <img class="payment-icon" src="https://cdn3.emoji.gg/emojis/51891-paypal.png" alt="PayPal Logo" />
+    PayPal
+  </div>
+  <div class="payment-method">
+    <img class="payment-icon" src="https://cdn3.emoji.gg/emojis/9073-robux.png" alt="Robux Icon" />
+    Robux
+  </div>
+</div>
+
   </section>
 
   <!-- FOOTER -->
