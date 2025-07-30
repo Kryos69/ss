@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Spare Stack</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
   <style>
@@ -26,6 +26,7 @@
       color: #ffffff;
       display: flex;
       flex-direction: column;
+      min-height: 100vh;
     }
 
     /* Navbar */
@@ -76,7 +77,8 @@
       justify-content: center;
       align-items: center;
       text-align: center;
-      padding: 4rem 1rem 3rem;
+      padding: 6rem 1rem 3rem; /* more top padding to push pricing below fold */
+      min-height: 90vh; /* force viewport height so user must scroll */
     }
 
     .hero h1 {
@@ -122,13 +124,13 @@
     /* Pricing */
     #pricing {
       padding: 4rem 2rem;
-      background-color: #111;
+      background-color: #0e0e10; /* same as body for seamless background */
       text-align: center;
     }
 
     #pricing h2 {
       font-size: 2.5rem;
-      margin-bottom: 2rem;
+      margin-bottom: 3rem;
       color: #fff;
     }
 
@@ -136,7 +138,9 @@
       display: flex;
       justify-content: center;
       gap: 2rem;
-      flex-wrap: wrap;
+      flex-wrap: nowrap;
+      max-width: 1000px;
+      margin: 0 auto;
     }
 
     .card {
@@ -146,6 +150,10 @@
       padding: 2rem;
       width: 300px;
       transition: 0.3s;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
     }
 
     .card:hover {
@@ -163,18 +171,44 @@
       color: #ccc;
       font-size: 1rem;
       margin-bottom: 1.5rem;
+      min-height: 40px;
     }
 
     .price {
       font-size: 2rem;
       font-weight: bold;
       color: #fff;
-      margin-bottom: 1rem;
+      margin-bottom: 1.5rem;
+    }
+
+    ul.benefits {
+      list-style: none;
+      padding-left: 0;
+      margin-bottom: 1.5rem;
+      text-align: left;
+      width: 100%;
+      color: #ddd;
+      font-size: 1rem;
+    }
+
+    ul.benefits li {
+      margin-bottom: 0.7rem;
+      padding-left: 1rem;
+      position: relative;
+    }
+
+    ul.benefits li::before {
+      content: "–";
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+      font-weight: bold;
     }
 
     .card .btn {
-      display: inline-block;
-      margin-top: 1rem;
+      margin-top: auto;
+      width: 100%;
+      text-align: center;
     }
 
     footer {
@@ -183,15 +217,35 @@
       font-size: 0.9rem;
       color: #666;
       background-color: #121214;
+      margin-top: auto;
     }
 
-    @media (max-width: 700px) {
+    /* Responsive */
+    @media (max-width: 980px) {
+      .pricing-cards {
+        flex-wrap: wrap;
+        gap: 1.5rem;
+      }
+      .card {
+        width: 100%;
+        max-width: 400px;
+      }
+    }
+
+    @media (max-width: 480px) {
       .hero h1 {
-        font-size: 2.2rem;
+        font-size: 2rem;
+      }
+      .hero p {
+        font-size: 1rem;
       }
       .pricing-cards {
         flex-direction: column;
         align-items: center;
+      }
+      .card {
+        width: 90%;
+        max-width: none;
       }
     }
   </style>
@@ -221,40 +275,40 @@
     </div>
   </section>
 
-  <!-- PRICING SECTION -->
+  <!-- PRICING -->
   <section id="pricing">
     <h2>Choose Your Plan</h2>
     <div class="pricing-cards">
       <div class="card">
         <h3>VIP</h3>
         <p>Basic access for casual users</p>
-        <div class="price>$3/mo</div>
-        <ul>
-          <li>⦿ 5 accounts/day</li>
-          <li>⦿ Standard support</li>
-          <li>⦿ Basic gen speeds</li>
+        <div class="price">$3/mo</div>
+        <ul class="benefits">
+          <li>– PLACEHOLDER</li>
+          <li>– PLACEHOLDER</li>
+          <li>– PLACEHOLDER</li>
         </ul>
         <a href="/register" class="btn">Get VIP</a>
       </div>
       <div class="card">
         <h3>ELITE</h3>
         <p>Great for regular users</p>
-        <div class="price>$7/mo</div>
-        <ul>
-          <li>⦿ 20 accounts/day</li>
-          <li>⦿ Priority support</li>
-          <li>⦿ Fast gen speeds</li>
+        <div class="price">$7/mo</div>
+        <ul class="benefits">
+          <li>– PLACEHOLDER</li>
+          <li>– PLACEHOLDER</li>
+          <li>– PLACEHOLDER</li>
         </ul>
         <a href="/register" class="btn">Get ELITE</a>
       </div>
       <div class="card">
         <h3>ULTIMATE</h3>
         <p>For power users & resellers</p>
-        <div class="price>$15/mo</div>
-        <ul>
-          <li>⦿ Unlimited accounts*</li>
-          <li>⦿ Dedicated support</li>
-          <li>⦿ Fastest speeds</li>
+        <div class="price">$15/mo</div>
+        <ul class="benefits">
+          <li>– PLACEHOLDER</li>
+          <li>– PLACEHOLDER</li>
+          <li>– PLACEHOLDER</li>
         </ul>
         <a href="/register" class="btn">Get ULTIMATE</a>
       </div>
