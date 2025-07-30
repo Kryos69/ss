@@ -2,10 +2,18 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>My Alt Gen</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Spare Stack</title>
+
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
+
   <style>
+    :root {
+      /* Easy one‑stop change if you ever want to tweak the red */
+      --accent: #e63946;
+    }
+
     * {
       margin: 0;
       padding: 0;
@@ -14,14 +22,14 @@
 
     body {
       font-family: 'Inter', sans-serif;
-      background-color: #0e0e10;
-      color: #ffffff;
+      background-color: #0e0e10;  /* dark */
+      color: #ffffff;             /* white text */
       min-height: 100vh;
       display: flex;
       flex-direction: column;
     }
 
-    /* Navbar */
+    /* ── NAVBAR ─────────────────────────────────────────── */
     header {
       width: 100%;
       padding: 1rem 2rem;
@@ -33,30 +41,32 @@
     }
 
     .logo {
-      font-size: 1.5rem;
+      font-size: 1.6rem;
       font-weight: 600;
-      color: #ffffff;
+      color: var(--accent);
+      user-select: none;
     }
 
     nav {
       display: flex;
       gap: 1rem;
+      flex-wrap: wrap;
     }
 
     .nav-link {
-      color: #bbbbbb;
+      color: #cccccc;
       text-decoration: none;
-      padding: 0.5rem 1rem;
+      padding: 0.45rem 1rem;
       border-radius: 6px;
-      transition: background 0.2s;
+      transition: background 0.2s, color 0.2s;
     }
 
     .nav-link:hover {
-      background-color: #1f1f1f;
+      background-color: var(--accent);
       color: #fff;
     }
 
-    /* Hero section */
+    /* ── HERO ───────────────────────────────────────────── */
     .hero {
       flex: 1;
       display: flex;
@@ -71,11 +81,16 @@
       font-size: 3rem;
       margin-bottom: 1rem;
       font-weight: 600;
+      line-height: 1.15;
+    }
+
+    .hero .highlight {
+      color: var(--accent);
     }
 
     .hero p {
       font-size: 1.2rem;
-      color: #aaa;
+      color: #aaaaaa;
       max-width: 600px;
       margin-bottom: 2rem;
     }
@@ -87,22 +102,23 @@
     }
 
     .btn {
-      background-color: #1a1a1d;
-      color: white;
-      padding: 0.75rem 1.5rem;
+      background-color: var(--accent);
+      color: #ffffff;
+      padding: 0.8rem 1.6rem;
       font-size: 1rem;
       border: none;
       border-radius: 8px;
       cursor: pointer;
       text-decoration: none;
-      transition: background 0.2s ease-in-out;
+      transition: transform 0.15s ease, box-shadow 0.15s ease;
     }
 
     .btn:hover {
-      background-color: #333;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.35);
     }
 
-    /* Footer */
+    /* ── FOOTER ─────────────────────────────────────────── */
     footer {
       text-align: center;
       padding: 1rem;
@@ -111,9 +127,10 @@
       background-color: #121214;
     }
 
+    /* ── RESPONSIVE ─────────────────────────────────────── */
     @media (max-width: 600px) {
       .hero h1 {
-        font-size: 2rem;
+        font-size: 2.2rem;
       }
 
       nav {
@@ -124,8 +141,10 @@
   </style>
 </head>
 <body>
+
+  <!-- NAVBAR -->
   <header>
-    <div class="logo">MyAltGen</div>
+    <div class="logo">Spare Stack</div>
     <nav>
       <a href="#" class="nav-link">Home</a>
       <a href="#generator" class="nav-link">Generator</a>
@@ -135,9 +154,10 @@
     </nav>
   </header>
 
+  <!-- HERO -->
   <section class="hero">
-    <h1>Fast. Secure. Unlimited.</h1>
-    <p>Generate high-quality alt accounts instantly. No limits. No fuss. Get started now with MyAltGen.</p>
+    <h1><span class="highlight">Fast.</span> Secure. Unlimited.</h1>
+    <p>Generate high‑quality alt accounts instantly with <strong>Spare Stack</strong> — no limits, no fuss.</p>
     <div class="hero-buttons">
       <a href="/login" class="btn">Login</a>
       <a href="/register" class="btn">Register</a>
@@ -145,8 +165,10 @@
     </div>
   </section>
 
+  <!-- FOOTER -->
   <footer>
-    &copy; 2025 MyAltGen. All rights reserved.
+    &copy; 2025 Spare Stack. All rights reserved.
   </footer>
+
 </body>
 </html>
