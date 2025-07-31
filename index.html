@@ -230,17 +230,17 @@
       user-select: none;
     }
 
-.payment-icon {
-  width: 48px;
-  height: 48px;
-  margin-bottom: 0.5rem;
-  transition: transform 0.2s ease;
-}
+    .payment-icon {
+      width: 48px;
+      height: 48px;
+      margin-bottom: 0.5rem;
+      transition: transform 0.2s ease;
+      cursor: pointer;
+    }
 
-.payment-icon:hover {
-  transform: scale(1.1);
-}
-}
+    .payment-icon:hover {
+      transform: scale(1.1);
+    }
 
     footer {
       text-align: center;
@@ -321,7 +321,7 @@
       <div class="card">
         <h3>VIP</h3>
         <p>Basic access for casual users</p>
-        <div class="price">$10 Lifetime</div>
+        <div class="price" data-price-usd="10" data-price-robux="1000">$10 Lifetime</div>
         <ul class="benefits">
           <li>– PLACEHOLDER</li>
           <li>– PLACEHOLDER</li>
@@ -332,7 +332,7 @@
       <div class="card">
         <h3>ELITE</h3>
         <p>Great for regular users</p>
-        <div class="price">$25 Lifetime</div>
+        <div class="price" data-price-usd="25" data-price-robux="2500">$25 Lifetime</div>
         <ul class="benefits">
           <li>– PLACEHOLDER</li>
           <li>– PLACEHOLDER</li>
@@ -343,7 +343,7 @@
       <div class="card">
         <h3>ULTIMATE</h3>
         <p>For power users & resellers</p>
-        <div class="price">$60 Lifetime</div>
+        <div class="price" data-price-usd="60" data-price-robux="6000">$60 Lifetime</div>
         <ul class="benefits">
           <li>– PLACEHOLDER</li>
           <li>– PLACEHOLDER</li>
@@ -353,18 +353,17 @@
       </div>
     </div>
 
-<!-- Supported Payments -->
-<div id="payments" aria-label="Supported payment methods">
-  <div class="payment-method">
-    <img class="payment-icon" src="https://cdn3.emoji.gg/emojis/7802-paypal.png" alt="PayPal Logo" />
-    PayPal
-  </div>
-  <div class="payment-method">
-    <img class="payment-icon" src="https://cdn3.emoji.gg/emojis/9073-robux.png" alt="Robux Icon" />
-    Robux
-  </div>
-</div>
-
+    <!-- Supported Payments -->
+    <div id="payments" aria-label="Supported payment methods">
+      <div class="payment-method">
+        <img id="paypal-toggle" class="payment-icon" src="https://cdn3.emoji.gg/emojis/7802-paypal.png" alt="PayPal Logo" />
+        PayPal
+      </div>
+      <div class="payment-method">
+        <img id="robux-toggle" class="payment-icon" src="https://cdn3.emoji.gg/emojis/9073-robux.png" alt="Robux Icon" />
+        Robux
+      </div>
+    </div>
   </section>
 
   <!-- FOOTER -->
@@ -372,5 +371,26 @@
     &copy; 2025 Spare Stack. All rights reserved.
   </footer>
 
+  <!-- Price Toggle Script -->
+  <script>
+    const prices = document.querySelectorAll('.price');
+    const paypalToggle = document.getElementById('paypal-toggle');
+    const robuxToggle = document.getElementById('robux-toggle');
+
+    function showPrices(mode) {
+      prices.forEach(price => {
+        const usd = price.getAttribute('data-price-usd');
+        const robux = price.getAttribute('data-price-robux');
+        if (mode === 'usd') {
+          price.textContent = `$${usd} Lifetime`;
+        } else {
+          price.textContent = `${robux} Robux`;
+        }
+      });
+    }
+
+    paypalToggle.addEventListener('click', () => showPrices('usd'));
+    robuxToggle.addEventListener('click', () => showPrices('robux'));
+  </script>
 </body>
 </html>
